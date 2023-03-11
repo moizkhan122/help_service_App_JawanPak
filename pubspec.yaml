@@ -42,6 +42,8 @@ dependencies:
   stacked_services: ^0.9.9
   google_maps_flutter: ^2.2.5
   geolocator: ^9.0.2
+  firebase_core: ^2.7.1
+  firebase_auth: ^4.2.10
 
 dev_dependencies:
   flutter_test:

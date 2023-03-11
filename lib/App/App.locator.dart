@@ -9,6 +9,9 @@
 import 'package:stacked_core/stacked_core.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
 
+import '../services/AuthService.dart';
+import '../services/ToastService.dart';
+
 final locator = StackedLocator.instance;
 
 Future<void> setupLocator(
@@ -19,4 +22,6 @@ Future<void> setupLocator(
 
 // Register dependencies
   locator.registerSingleton(NavigationService());
+  locator.registerLazySingleton(() => ToastService());
+  locator.registerLazySingleton(() => AuthService());
 }

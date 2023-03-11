@@ -1,3 +1,5 @@
+import 'package:flutter_application_1/services/AuthService.dart';
+import 'package:flutter_application_1/services/ToastService.dart';
 import 'package:flutter_application_1/views/userGoogleCurrentLocation/userGoogleCurrentLocation.dart';
 import 'package:flutter_application_1/views/AmbulanceServiceView/AmbulanceService.dart';
 import 'package:flutter_application_1/views/FireBridageServiceView/FireBridageServiceView.dart';
@@ -26,9 +28,12 @@ import 'package:stacked_services/stacked_services.dart';
     Singleton(
       classType: NavigationService,
     ),
-    // LazySingleton(
-    //   //classType: CounterService,
-    // ),
+    LazySingleton(
+     classType: ToastService,
+    ),
+     LazySingleton(
+     classType: AuthService,
+    ),
   ],
 )
 class App {}

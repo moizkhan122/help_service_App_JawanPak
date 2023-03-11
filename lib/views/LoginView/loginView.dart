@@ -3,29 +3,21 @@ import 'package:flutter_application_1/resources/ContainerButton.dart';
 import 'package:flutter_application_1/resources/text.dart';
 import 'package:flutter_application_1/utills/Colors.dart';
 import 'package:flutter_application_1/view_model/loginViewModel.dart';
-import 'package:flutter_application_1/views/Home/Home.dart';
-import 'package:flutter_application_1/views/SignUp/signUp.dart';
 import 'package:stacked/stacked.dart';
 
-class LoginView extends StatefulWidget {
-   LoginView({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
-
-
-  @override
+  
+   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<LoginViewModel>.nonReactive(
+    return ViewModelBuilder<LoginViewModel>.reactive(
       viewModelBuilder: () => LoginViewModel(),
-      //onModelReady: (viewModel) => viewModel.initialise(),
+    //onModelReady: (viewModel) => viewModel.initialise(),
       builder: (context, viewModel, _) => Scaffold(
       body: Form(
-        key: viewModel.formkey,
-        child: SingleChildScrollView(
+        child: Builder(builder: (context){
+          return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 75),
             child: Column(
@@ -34,7 +26,7 @@ class _LoginViewState extends State<LoginView> {
                   const SizedBox(height: 13,),
                   
                   const SizedBox(height: 20,),
-                  textWidget(text: "LOGIN HERE",size: 30,color: AppColors.RedColor,) ,
+                  textWidget(text: "Login HERE",size: 30,color: AppColors.RedColor,) ,
                   const SizedBox(height: 10,),
                               
                   Padding(
@@ -42,14 +34,11 @@ class _LoginViewState extends State<LoginView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        textWidget(text: "Email",size: 25,color: AppColors.RedColor,),
-                        const SizedBox(height: 15,),
+                        
                         TextFormField(
-                          controller: viewModel.email,
+                          controller: viewModel.emailContr,
                            
-                         validator: (value) {
-                            viewModel.emailVerifi(value);
-                        }, 
+                         validator:  viewModel.emailVerifi,
                           decoration: const InputDecoration(
                             border : OutlineInputBorder(),
                             hintText: "Enter Email",),
@@ -58,10 +47,8 @@ class _LoginViewState extends State<LoginView> {
                         textWidget(text: "password",size: 25,color: AppColors.RedColor,),
                         const SizedBox(height: 15,),
                         TextFormField(
-                          controller: viewModel.password,
-                         validator: (value) {
-                            viewModel.passVerifi(value);
-                        },
+                          controller: viewModel.passwordContr,
+                         validator:  viewModel.passVerifi,
                             //obscureText: isSellected,
                           decoration: const InputDecoration(
                             //  suffixIcon: GestureDetector(
@@ -81,21 +68,23 @@ class _LoginViewState extends State<LoginView> {
                         onTap: (){
                           viewModel.navigateToSignUp();
                         },
-                        child: textWidget(text: " SignUp",size: 18,color: AppColors.RedColor,)),
+                        child: textWidget(text: " SignUp", size: 18,color: AppColors.RedColor,)),
                     ],
                   ),
                   const SizedBox(height: 25,),
                   ContainerButton(
-                    text: "LOGIN", 
+                    text: "Login", 
                     onpress: (){
-                      viewModel.formvalidate();
+                        viewModel.isSignIn(context);
+                      //viewModel.formvalidate(viewModel.email.text.toString(),viewModel.password.text.toString());
                     }, 
                     radius: BorderRadius.circular(15),
                     
                     color: AppColors.RedColor,),
               ]),
           ),
-        ),
+        );
+        } ,),
       ),
     ),
     );
@@ -104,6 +93,7 @@ class _LoginViewState extends State<LoginView> {
 /** */
 
 /**import 'package:flutter/material.dart';
+ 
 import 'package:flutter_application_1/resources/ContainerButton.dart';
 import 'package:flutter_application_1/resources/text.dart';
 import 'package:flutter_application_1/utills/Colors.dart';

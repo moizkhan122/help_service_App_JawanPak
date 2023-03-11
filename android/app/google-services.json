@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "481371472917",
+    "project_id": "helpserviceappjawan",
+    "storage_bucket": "helpserviceappjawan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481371472917:android:a2b6b61913cac698f0ba1c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481371472917-06pj6mcniag8q1leem1d54m0c2knmgk6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMzeg2Ue0OFKjmKxQ9CqPAtSnBNvN1l34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481371472917-06pj6mcniag8q1leem1d54m0c2knmgk6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
