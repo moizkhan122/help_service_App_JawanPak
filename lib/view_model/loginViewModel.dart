@@ -11,9 +11,7 @@ class LoginViewModel extends BaseViewModel{
 final toastService = locator<ToastService>();
   final authService = locator<AuthService>(); 
 
-     TextEditingController passwordContr = TextEditingController();
-     TextEditingController emailContr = TextEditingController();
-
+     
   final _navigationService = locator<NavigationService>();
   
   navigateToSignUp() {
@@ -25,6 +23,8 @@ final toastService = locator<ToastService>();
   }
   
   bool isSellected = true;
+    TextEditingController passwordContr = TextEditingController();
+     TextEditingController emailContr = TextEditingController();
 
   String? emailVerifi(String? value){
                   if(value == null || value.isEmpty){

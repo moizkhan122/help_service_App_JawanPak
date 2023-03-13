@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/resources/elevatedButton.dart';
+import 'package:flutter_application_1/resources/text.dart';
+import 'package:flutter_application_1/utills/Colors.dart';
 import 'package:flutter_application_1/view_model/UserGooCurLocViewModel.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -24,6 +27,75 @@ class UserGoogleCurrentLocationView extends StatelessWidget {
         // },
         // child:const Icon(Icons.add),
         // ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+          
+          onPressed: (){},child: IconButton(onPressed: (){
+            Navigator.of(context).pop();
+          },icon:const Icon(Icons.arrow_back_ios),),),
+            SizedBox(width: 15,),
+            FloatingActionButton(
+              
+              onPressed: (){},child: IconButton(onPressed: (){
+                showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+            title: const Text('Request for help'),
+            content: SingleChildScrollView(
+              child: Form(
+      child : Builder(builder: (context){
+                return Column(
+                  children: [
+                    TextFormField(
+                                controller: viewModel.nameContr,
+                               validator:  viewModel.emailVerifi,
+                                decoration: const InputDecoration(
+                                  border : OutlineInputBorder(),
+                                  hintText: "Enter Name",),
+                              ),
+                              const SizedBox(height: 10,),
+                              textWidget(text: "Number",size: 20,color: AppColors.RedColor,),
+                              const SizedBox(height: 10,),
+                              TextFormField(
+                                controller: viewModel.numContr,
+                               validator:  viewModel.passVerifi,
+                                  //obscureText: isSellected,
+                                decoration: const InputDecoration(
+                                  //  suffixIcon: GestureDetector(
+                                  //    onTap: (){},
+                                  //     child: Icon(isSellected ? Icons.visibility_off : Icons.visibility,color: AppColors.blackColor,)),
+                                  border : OutlineInputBorder(),
+                                  hintText: "Enter Number",),
+                              ),
+                              SizedBox(height: 20,),
+                    elevatedButton(
+                      txt1: "Send Request",
+                      color: AppColors.RedColor, 
+                      onpress: (){
+                        viewModel.ambulanceReqSend(context);
+                        Navigator.of(context).pop();
+                      }),
+                  ],
+                );
+              }), 
+              )
+            ),
+            actions: [
+              IconButton(onPressed: (){
+                Navigator.of(context).pop();
+              }, 
+              icon: Icon(Icons.cancel))
+            ],
+      );
+    },
+  );
+              },icon:const Icon(Icons.add),),),
+          ],
+        ),
         ),
       );
   }
