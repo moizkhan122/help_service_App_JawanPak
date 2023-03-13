@@ -8,21 +8,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/AmbulanceServiceView/AmbulanceService.dart'
     as _i7;
+import 'package:flutter_application_1/views/AmbulGoogleCurrentLocation/AmbulGoogleCurrentLocation.dart'
+    as _i10;
 import 'package:flutter_application_1/views/FireBridageServiceView/FireBridageServiceView.dart'
     as _i8;
+import 'package:flutter_application_1/views/FireBrigadeGoogleCurrentLocation/FireBrigadeGoogleCurrentLocation.dart'
+    as _i12;
 import 'package:flutter_application_1/views/Home/Home.dart' as _i6;
 import 'package:flutter_application_1/views/LoginView/loginView.dart' as _i4;
 import 'package:flutter_application_1/views/ObBoardView/OnBoardView.dart'
     as _i3;
+import 'package:flutter_application_1/views/PoliceGoogleCurrentLocation/PoliceGoogleCurrentLocation.dart'
+    as _i11;
 import 'package:flutter_application_1/views/PoliceServiceView/PoliceServiceView.dart'
     as _i9;
 import 'package:flutter_application_1/views/SignUp/signUp.dart' as _i5;
 import 'package:flutter_application_1/views/SplashView/SplashScreenView.dart'
     as _i2;
-import 'package:flutter_application_1/views/userGoogleCurrentLocation/userGoogleCurrentLocation.dart'
-    as _i10;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i11;
+import 'package:stacked_services/stacked_services.dart' as _i13;
 
 class Routes {
   static const splashScreen = '/';
@@ -41,8 +45,12 @@ class Routes {
 
   static const policeServicesView = '/police-services-view';
 
-  static const userGoogleCurrentLocationView =
-      '/user-google-current-location-view';
+  static const ambulGoogleCurrentLocation = '/ambul-google-current-location';
+
+  static const policeGoogleCurrentLocation = '/police-google-current-location';
+
+  static const fireBrigadeGoogleCurrentLocation =
+      '/fire-brigade-google-current-location';
 
   static const all = <String>{
     splashScreen,
@@ -53,7 +61,9 @@ class Routes {
     ambulanceServiceView,
     fireBridageServiceView,
     policeServicesView,
-    userGoogleCurrentLocationView,
+    ambulGoogleCurrentLocation,
+    policeGoogleCurrentLocation,
+    fireBrigadeGoogleCurrentLocation,
   };
 }
 
@@ -92,8 +102,16 @@ class StackedRouter extends _i1.RouterBase {
       page: _i9.PoliceServicesView,
     ),
     _i1.RouteDef(
-      Routes.userGoogleCurrentLocationView,
-      page: _i10.UserGoogleCurrentLocationView,
+      Routes.ambulGoogleCurrentLocation,
+      page: _i10.AmbulGoogleCurrentLocation,
+    ),
+    _i1.RouteDef(
+      Routes.policeGoogleCurrentLocation,
+      page: _i11.PoliceGoogleCurrentLocation,
+    ),
+    _i1.RouteDef(
+      Routes.fireBrigadeGoogleCurrentLocation,
+      page: _i12.FireBrigadeGoogleCurrentLocation,
     ),
   ];
 
@@ -146,9 +164,21 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i10.UserGoogleCurrentLocationView: (data) {
+    _i10.AmbulGoogleCurrentLocation: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const _i10.UserGoogleCurrentLocationView(),
+        builder: (context) => const _i10.AmbulGoogleCurrentLocation(),
+        settings: data,
+      );
+    },
+    _i11.PoliceGoogleCurrentLocation: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.PoliceGoogleCurrentLocation(),
+        settings: data,
+      );
+    },
+    _i12.FireBrigadeGoogleCurrentLocation: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const _i12.FireBrigadeGoogleCurrentLocation(),
         settings: data,
       );
     },
@@ -160,7 +190,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i11.NavigationService {
+extension NavigatorStateExtension on _i13.NavigationService {
   Future<dynamic> navigateToSplashScreen([
     int? routerId,
     bool preventDuplicates = true,
@@ -273,14 +303,42 @@ extension NavigatorStateExtension on _i11.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToUserGoogleCurrentLocationView([
+  Future<dynamic> navigateToAmbulGoogleCurrentLocation([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.userGoogleCurrentLocationView,
+    return navigateTo<dynamic>(Routes.ambulGoogleCurrentLocation,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToPoliceGoogleCurrentLocation([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.policeGoogleCurrentLocation,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToFireBrigadeGoogleCurrentLocation([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.fireBrigadeGoogleCurrentLocation,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -399,14 +457,42 @@ extension NavigatorStateExtension on _i11.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithUserGoogleCurrentLocationView([
+  Future<dynamic> replaceWithAmbulGoogleCurrentLocation([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.userGoogleCurrentLocationView,
+    return replaceWith<dynamic>(Routes.ambulGoogleCurrentLocation,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithPoliceGoogleCurrentLocation([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.policeGoogleCurrentLocation,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithFireBrigadeGoogleCurrentLocation([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.fireBrigadeGoogleCurrentLocation,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

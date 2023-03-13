@@ -6,7 +6,7 @@ import 'package:stacked_services/stacked_services.dart';
 class FireBrigadeViewModel extends BaseViewModel{
    final _navigationService = locator<NavigationService>();
   
-  navigateToUserGoogleCurrentLocationView() {
-    _navigationService.navigateToUserGoogleCurrentLocationView();
+  navigateToFireBrigadeGoogleCurrentLocation() {
+    _navigationService.navigateToFireBrigadeGoogleCurrentLocation();
   }
 }

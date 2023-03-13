@@ -32,19 +32,19 @@ class AmbulanceServiceView extends StatelessWidget {
             SizedBox(height: 35,),
             elevatedButton(
               onpress: (){
-                viewModel.navigateToUserGoogleCurrentLocationView();
+                viewModel.navigateToAmbulGoogleCurrentLocation();
               },
               txt1: 'MEDICAL EMERGENCY',color: AppColors.RedColor,),
             SizedBox(height: 10,),
             elevatedButton(
               onpress: (){
-                viewModel.navigateToUserGoogleCurrentLocationView();
+                viewModel.navigateToAmbulGoogleCurrentLocation();
               },
               txt1: 'FIRE EMERGENCY',color: AppColors.RedColor,),
             SizedBox(height: 10,),
             elevatedButton(
               onpress: (){
-                viewModel.navigateToUserGoogleCurrentLocationView();
+                viewModel.navigateToAmbulGoogleCurrentLocation();
               },
               txt1: 'ACCIDENT EMERGENCY',color: AppColors.RedColor,),
             SizedBox(height: 10,),

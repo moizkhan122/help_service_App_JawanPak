@@ -36,19 +36,19 @@ class PoliceServicesView extends StatelessWidget {
                 
                 elevatedButton(
                   onpress: (){
-                    viewModel.navigateToUserGoogleCurrentLocationView();
+                    viewModel.navigateToPoliceGoogleCurrentLocation();
                   },
                   txt1: 'FIGHT / FIRE',color: AppColors.RedColor,),
                 SizedBox(height: 10,),
                 elevatedButton(
                   onpress: (){
-                    viewModel.navigateToUserGoogleCurrentLocationView();
+                    viewModel.navigateToPoliceGoogleCurrentLocation();
                   },
                   txt1: 'ROBBERY',color: AppColors.RedColor,),
                 SizedBox(height: 10,),
                 elevatedButton(
                   onpress: (){
-                    viewModel.navigateToUserGoogleCurrentLocationView();
+                    viewModel.navigateToPoliceGoogleCurrentLocation();
                   },
                   txt1: 'HARASSEMENT',color: AppColors.RedColor,),
                 SizedBox(height: 10,),

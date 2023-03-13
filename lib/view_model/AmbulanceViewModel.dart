@@ -8,7 +8,7 @@ class AmbulanceViewModel extends BaseViewModel{
   
   final _navigationService = locator<NavigationService>();
   
-  navigateToUserGoogleCurrentLocationView() {
-    _navigationService.navigateToUserGoogleCurrentLocationView();
+  navigateToAmbulGoogleCurrentLocation() {
+    _navigationService.navigateToAmbulGoogleCurrentLocation();
   }
 }

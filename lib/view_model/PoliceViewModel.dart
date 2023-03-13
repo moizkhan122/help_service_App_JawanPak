@@ -6,7 +6,7 @@ import 'package:stacked_services/stacked_services.dart';
 class PoliceViewModel extends BaseViewModel{
   final _navigationService = locator<NavigationService>();
   
-  navigateToUserGoogleCurrentLocationView() {
-    _navigationService.navigateToUserGoogleCurrentLocationView();
+  navigateToPoliceGoogleCurrentLocation() {
+    _navigationService.navigateToPoliceGoogleCurrentLocation();
   }
 }

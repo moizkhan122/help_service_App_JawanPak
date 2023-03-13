@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/resources/elevatedButton.dart';
 import 'package:flutter_application_1/resources/text.dart';
 import 'package:flutter_application_1/utills/Colors.dart';
-import 'package:flutter_application_1/view_model/UserGooCurLocViewModel.dart';
+import 'package:flutter_application_1/view_model/PoliceGooCurLocViewModel.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
 
-class UserGoogleCurrentLocationView extends StatelessWidget {
-  const UserGoogleCurrentLocationView({super.key});
+class PoliceGoogleCurrentLocation extends StatelessWidget {
+  const PoliceGoogleCurrentLocation({super.key});
   
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<UserGooCurLocViewModel>.reactive(
-      viewModelBuilder: () => UserGooCurLocViewModel(),
+    return ViewModelBuilder<PoliceGooCurLocViewModel>.reactive(
+      viewModelBuilder: () => PoliceGooCurLocViewModel(),
       // ignore: deprecated_member_use
       onModelReady: (viewModel) => viewModel.getLocation(),
       builder: (context, viewModel, child) => Scaffold(
@@ -48,38 +48,49 @@ class UserGoogleCurrentLocationView extends StatelessWidget {
             content: SingleChildScrollView(
               child: Form(
       child : Builder(builder: (context){
-                return Column(
-                  children: [
-                    TextFormField(
-                                controller: viewModel.nameContr,
-                               validator:  viewModel.emailVerifi,
-                                decoration: const InputDecoration(
-                                  border : OutlineInputBorder(),
-                                  hintText: "Enter Name",),
-                              ),
-                              const SizedBox(height: 10,),
-                              textWidget(text: "Number",size: 20,color: AppColors.RedColor,),
-                              const SizedBox(height: 10,),
-                              TextFormField(
-                                controller: viewModel.numContr,
-                               validator:  viewModel.passVerifi,
-                                  //obscureText: isSellected,
-                                decoration: const InputDecoration(
-                                  //  suffixIcon: GestureDetector(
-                                  //    onTap: (){},
-                                  //     child: Icon(isSellected ? Icons.visibility_off : Icons.visibility,color: AppColors.blackColor,)),
-                                  border : OutlineInputBorder(),
-                                  hintText: "Enter Number",),
-                              ),
-                              SizedBox(height: 20,),
-                    elevatedButton(
-                      txt1: "Send Request",
-                      color: AppColors.RedColor, 
-                      onpress: (){
-                        viewModel.ambulanceReqSend(context);
-                        Navigator.of(context).pop();
-                      }),
-                  ],
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TextFormField(
+                                  controller: viewModel.nameContr,
+                                 validator:  viewModel.emailVerifi,
+                                  decoration: const InputDecoration(
+                                    border : OutlineInputBorder(),
+                                    hintText: "Enter Name",),
+                                ),
+                                const SizedBox(height: 5,),
+                                TextFormField(
+                                  controller: viewModel.caseContr,
+                                 validator:  viewModel.caseVerifi,
+                                  decoration: const InputDecoration(
+                                    border : OutlineInputBorder(),
+                                    hintText: "Enter Case",),
+                                ),
+                                
+                                const SizedBox(height: 5,),
+                                textWidget(text: "Number",size: 20,color: AppColors.RedColor,),
+                                const SizedBox(height: 5,),
+                                TextFormField(
+                                  controller: viewModel.numContr,
+                                 validator:  viewModel.passVerifi,
+                                    //obscureText: isSellected,
+                                  decoration: const InputDecoration(
+                                    //  suffixIcon: GestureDetector(
+                                    //    onTap: (){},
+                                    //     child: Icon(isSellected ? Icons.visibility_off : Icons.visibility,color: AppColors.blackColor,)),
+                                    border : OutlineInputBorder(),
+                                    hintText: "Enter Number",),
+                                ),
+                                SizedBox(height: 20,),
+                      elevatedButton(
+                        txt1: "Send Request",
+                        color: AppColors.RedColor, 
+                        onpress: (){
+                          viewModel.policeReqSend(context);
+                          Navigator.of(context).pop();
+                        }),
+                    ],
+                  ),
                 );
               }), 
               )

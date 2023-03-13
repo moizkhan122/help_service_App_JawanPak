@@ -6,27 +6,26 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
 
-class UserGooCurLocViewModel extends BaseViewModel {
+class FireBrigadeGooCurLocViewModel extends BaseViewModel {
 
   double latituee = 0;
   double longitudee = 0;
 
 final Completer<GoogleMapController> controler = Completer(); //instance of a google map
 
-    final ambulanceUser = FirebaseFirestore.instance.collection('Ambulance');
-    final policeUser = FirebaseFirestore.instance.collection('Police');
     final fireBrigadeeUser = FirebaseFirestore.instance.collection('FireBrigade');    
   
       // ignore: avoid_types_as_parameter_names
-      getAmbulanceReqWithCordinate(name,num)async
+      getFireBrigadeReqWithCordinate(name,num,Case)async
       {
          final id = DateTime.now().millisecondsSinceEpoch.toString();
-                ambulanceUser.doc(id).set({
+                fireBrigadeeUser.doc(id).set({
                   'Request' : 'Request',
                   'Latitudee' : latituee.toString(),
                   'Longitudee' : longitudee.toString(),
                   'Name' : name.toString(),
-                  'Number' : num.toString()
+                  'Number' : num.toString(),
+                  'Case' : Case.toString(),
                 }).then((value){
                   print("Request sent");
                 }).onError((error, stackTrace){
@@ -34,44 +33,6 @@ final Completer<GoogleMapController> controler = Completer(); //instance of a go
                 });
                 rebuildUi();
       }
-
-      getPloiceReqWithCordinate(name,num)async
-      {
-         final id = DateTime.now().millisecondsSinceEpoch.toString();
-                policeUser.doc(id).set({
-                  'Request' : 'Request',
-                  'Latitudee' : latituee.toString(),
-                  'Longitudee' : longitudee.toString(),
-                  'Name' : name.toString(),
-                  'Number' : num.toString()
-                }).then((value){
-                  print("Request sent");
-                }).onError((error, stackTrace){
-                  print(error.toString());
-                });
-                rebuildUi();
-      }
-
-      getFireBrigadeReqWithCordinate(name,num)async
-      {
-         final id = DateTime.now().millisecondsSinceEpoch.toString();
-                policeUser.doc(id).set({
-                  'Request' : 'Request',
-                  'Latitudee' : latituee.toString(),
-                  'Longitudee' : longitudee.toString(),
-                  'Name' : name.toString(),
-                  'Number' : num.toString()
-                }).then((value){
-                  print("Request sent");
-                }).onError((error, stackTrace){
-                  print(error.toString());
-                });
-                rebuildUi();
-      }
-
-
-
-
 
   final  CameraPosition lgoogleplex = const CameraPosition(
     target: LatLng(33.6844, 72.0479),
@@ -141,6 +102,7 @@ final Completer<GoogleMapController> controler = Completer(); //instance of a go
 
     TextEditingController nameContr = TextEditingController();
      TextEditingController numContr = TextEditingController();
+     TextEditingController caseContr = TextEditingController();
 
   String? emailVerifi(String? value){
                   if(value == null || value.isEmpty){
@@ -148,9 +110,17 @@ final Completer<GoogleMapController> controler = Completer(); //instance of a go
                   }
                   else{
                     return null;
-                 }
-                 
+                 }          
   }
+  String? caseVerifi(String? value){
+                  if(value == null || value.isEmpty){
+                    return "Enter Email";
+                  }
+                  else{
+                    return null;
+                 }          
+  }
+
    String? passVerifi(String? value){
                   if(value == null || value.isEmpty){
                     return "Enter PAssword";
@@ -163,19 +133,10 @@ final Completer<GoogleMapController> controler = Completer(); //instance of a go
                  }
   }
 
-    void ambulanceReqSend(BuildContext context){
+ 
+    void fireBrigageReqSend(BuildContext context){
       if (!(Form.of(context)?.validate() ?? false)) {
-        getAmbulanceReqWithCordinate(nameContr.text.toString(),numContr.text.toString());
-      }
-    }
-    void policeReqSend(BuildContext context){
-      if (!(Form.of(context)?.validate() ?? false)) {
-        getAmbulanceReqWithCordinate(nameContr.text.toString(),numContr.text.toString());
-      }
-    }
-    void get(BuildContext context){
-      if (!(Form.of(context)?.validate() ?? false)) {
-        getFireBrigadeReqWithCordinate(nameContr.text.toString(),numContr.text.toString());
+        getFireBrigadeReqWithCordinate(nameContr.text.toString(),numContr.text.toString(),caseContr.text.toString());
       }
     }
         

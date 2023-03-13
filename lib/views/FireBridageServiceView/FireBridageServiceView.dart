@@ -31,19 +31,19 @@ class FireBridageServiceView extends StatelessWidget {
             
             elevatedButton(
               onpress: (){
-                viewModel.navigateToUserGoogleCurrentLocationView();
+                viewModel.navigateToFireBrigadeGoogleCurrentLocation();
               },
               txt1: 'FIRE',color: AppColors.RedColor,),
             SizedBox(height: 10,),
             elevatedButton(
               onpress: (){
-                viewModel.navigateToUserGoogleCurrentLocationView();
+                viewModel.navigateToFireBrigadeGoogleCurrentLocation();
               },
               txt1: 'CYLINDER BLAST',color: AppColors.RedColor,),
             SizedBox(height: 10,),
             elevatedButton(
               onpress: (){
-                viewModel.navigateToUserGoogleCurrentLocationView();
+                viewModel.navigateToFireBrigadeGoogleCurrentLocation();
               },
               txt1: 'SHORT CIRCUIT',color: AppColors.RedColor,),
             SizedBox(height: 10,),
