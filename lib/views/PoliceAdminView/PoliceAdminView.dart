@@ -1,15 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/resources/text.dart';
 import 'package:flutter_application_1/utills/Colors.dart';
+import 'package:flutter_application_1/views/LoginView/loginView.dart';
 import 'package:lottie/lottie.dart';
 
 // ignore: must_be_immutable
-class PoliceAdminView extends StatelessWidget {
+class PoliceAdminView extends StatefulWidget {
    PoliceAdminView({super.key});
-  
+
+  @override
+  State<PoliceAdminView> createState() => _PoliceAdminViewState();
+}
+
+class _PoliceAdminViewState extends State<PoliceAdminView> {
   final fireBrigadefireStore = FirebaseFirestore.instance.collection('Police').snapshots();
+
   CollectionReference ref = FirebaseFirestore.instance.collection('Police');
+
+  final auth = FirebaseAuth.instance;
+  bool click = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +79,11 @@ class PoliceAdminView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ElevatedButton(
-        onPressed: (){},
+        onPressed: (){
+          setState(() {
+            click = true;
+          });
+        },
         style: ElevatedButton.styleFrom(
            fixedSize: const Size(150, 50),
             backgroundColor: Colors.transparent,
@@ -76,9 +93,25 @@ class PoliceAdminView extends StatelessWidget {
               width: 2.0,
               color: AppColors.RedColor,
             )),
-        child: Text("Accept",style:const TextStyle(fontSize: 18),)),
+        child:click? Text("Accepted",style:const TextStyle(fontSize: 18),) : 
+        Text("Accept",style:const TextStyle(fontSize: 18),)
+        ),
                           ElevatedButton(
-        onPressed: (){},
+        onPressed: (){
+          ref.doc(snapshot.data!.docs[index]['Id'].toString()).delete().then((value){
+                              logout(){
+                        auth.signOut().then((value){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
+                        }).onError((error, stackTrace){
+                          if (kDebugMode) {
+                            print(error.toString());
+                          }
+                        });
+                              }
+                            }).onError((error, stackTrace){
+                              //FirebaseServices().ToastMessge(error);
+                            });
+        },
         style: ElevatedButton.styleFrom(
            fixedSize: const Size(150, 50),
             backgroundColor: Colors.transparent,
@@ -91,7 +124,24 @@ class PoliceAdminView extends StatelessWidget {
         child: Text("Deny",style:const TextStyle(fontSize: 18),)),
                       ],
                     ),
-                    textWidget(text: snapshot.data!.docs[index]['Request'].toString()),
+                    SizedBox(height: 35,),
+
+                      Align(
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        onPressed: (){
+                            logout(){
+                        auth.signOut().then((value){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
+                        }).onError((error, stackTrace){
+                          if (kDebugMode) {
+                            print(error.toString());
+                          }
+                        });
+                      }
+                        }, 
+                        icon: Icon(Icons.logout)),
+                    )
                   ],);
               },),
             );

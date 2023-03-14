@@ -51,23 +51,21 @@ class SignUpViewModel extends BaseViewModel{
   }
     ////////////////////
   List<String> optionss =<String> [
-    'userAdmin'
     'firebrigadeAdmin',
     'policeAdmin',
     'ambulanceAdmin',
   ];
-  String currentItemSelected = "userAdmin";
-  var rool = "userAdmin";
+  String currentItemSelected = "firebrigadeAdmin";
+  var rool = "firebrigadeAdmin";
 
   onChnage(String? newValueSelected) {
           currentItemSelected = newValueSelected!;
-          rebuildUi();
           rool = newValueSelected;
           rebuildUi();
         }
 
     void isSignUp(BuildContext context)async{
-      if ((Form.of(context).validate())) {
+      if (!(Form.of(context).validate())) {
         return;
       }
       var res = await runBusyFuture(authService.signUp(emailContr.text.toString(), passwordContr.text.toString(),rool));

@@ -51,7 +51,7 @@ class AmbulGoogleCurrentLocation extends StatelessWidget {
                 return Column(
                   children: [
                     TextFormField(
-                                controller: viewModel.caseContr,
+                                controller: viewModel.nameContr,
                                validator:  viewModel.caseVerifi,
                                 decoration: const InputDecoration(
                                   border : OutlineInputBorder(),
@@ -59,11 +59,11 @@ class AmbulGoogleCurrentLocation extends StatelessWidget {
                               ),
                               const SizedBox(height: 5,),
                     TextFormField(
-                                controller: viewModel.nameContr,
+                                controller: viewModel.caseContr,
                                validator:  viewModel.emailVerifi,
                                 decoration: const InputDecoration(
                                   border : OutlineInputBorder(),
-                                  hintText: "Enter Name",),
+                                  hintText: "Enter case",),
                               ),
                               const SizedBox(height: 5,),
                               textWidget(text: "Number",size: 20,color: AppColors.RedColor,),
