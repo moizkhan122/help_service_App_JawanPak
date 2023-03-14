@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/resources/elevatedButton.dart';
 import 'package:flutter_application_1/resources/text.dart';
 import 'package:flutter_application_1/utills/Colors.dart';
 import 'package:lottie/lottie.dart';
 
-// ignore: must_be_immutable
-class AmbulanceAdminView extends StatelessWidget {
-   AmbulanceAdminView({super.key});
+class FireBrigadeAdminView extends StatelessWidget {
+   FireBrigadeAdminView({super.key});
   
-  final fireBrigadefireStore = FirebaseFirestore.instance.collection('Ambulance').snapshots();
-  CollectionReference ref = FirebaseFirestore.instance.collection('Ambulance');
+  final fireBrigadefireStore = FirebaseFirestore.instance.collection('FireBrigade').snapshots();
+  CollectionReference ref = FirebaseFirestore.instance.collection('FireBrigade');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class AmbulanceAdminView extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 15,),
-            Lottie.network('https://assets4.lottiefiles.com/packages/lf20_pex2sf.json'),
+            Lottie.network('https://assets5.lottiefiles.com/packages/lf20_5qHphzUBQP.json'),
            SizedBox(height: 50,),
 
             StreamBuilder<QuerySnapshot>(

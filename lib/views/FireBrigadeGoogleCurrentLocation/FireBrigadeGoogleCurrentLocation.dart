@@ -63,7 +63,7 @@ class FireBrigadeGoogleCurrentLocation extends StatelessWidget {
                                validator:  viewModel.caseVerifi,
                                 decoration: const InputDecoration(
                                   border : OutlineInputBorder(),
-                                  hintText: "Enter Name",),
+                                  hintText: "Enter Case",),
                               ),
                               const SizedBox(height: 5,),
                               textWidget(text: "Number",size: 20,color: AppColors.RedColor,),

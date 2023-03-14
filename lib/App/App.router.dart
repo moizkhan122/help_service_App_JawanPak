@@ -5,19 +5,26 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter/material.dart' as _i16;
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/views/AmbulanceAdminView/AmbulanceAdminView.dart'
+    as _i15;
 import 'package:flutter_application_1/views/AmbulanceServiceView/AmbulanceService.dart'
     as _i7;
 import 'package:flutter_application_1/views/AmbulGoogleCurrentLocation/AmbulGoogleCurrentLocation.dart'
     as _i10;
 import 'package:flutter_application_1/views/FireBridageServiceView/FireBridageServiceView.dart'
     as _i8;
+import 'package:flutter_application_1/views/FireBrigadeAdminView/FireBrigadeAdminView.dart'
+    as _i13;
 import 'package:flutter_application_1/views/FireBrigadeGoogleCurrentLocation/FireBrigadeGoogleCurrentLocation.dart'
     as _i12;
 import 'package:flutter_application_1/views/Home/Home.dart' as _i6;
 import 'package:flutter_application_1/views/LoginView/loginView.dart' as _i4;
 import 'package:flutter_application_1/views/ObBoardView/OnBoardView.dart'
     as _i3;
+import 'package:flutter_application_1/views/PoliceAdminView/PoliceAdminView.dart'
+    as _i14;
 import 'package:flutter_application_1/views/PoliceGoogleCurrentLocation/PoliceGoogleCurrentLocation.dart'
     as _i11;
 import 'package:flutter_application_1/views/PoliceServiceView/PoliceServiceView.dart'
@@ -26,7 +33,7 @@ import 'package:flutter_application_1/views/SignUp/signUp.dart' as _i5;
 import 'package:flutter_application_1/views/SplashView/SplashScreenView.dart'
     as _i2;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i13;
+import 'package:stacked_services/stacked_services.dart' as _i17;
 
 class Routes {
   static const splashScreen = '/';
@@ -52,6 +59,12 @@ class Routes {
   static const fireBrigadeGoogleCurrentLocation =
       '/fire-brigade-google-current-location';
 
+  static const fireBrigadeAdminView = '/fire-brigade-admin-view';
+
+  static const policeAdminView = '/police-admin-view';
+
+  static const ambulanceAdminView = '/ambulance-admin-view';
+
   static const all = <String>{
     splashScreen,
     onboardView,
@@ -64,6 +77,9 @@ class Routes {
     ambulGoogleCurrentLocation,
     policeGoogleCurrentLocation,
     fireBrigadeGoogleCurrentLocation,
+    fireBrigadeAdminView,
+    policeAdminView,
+    ambulanceAdminView,
   };
 }
 
@@ -112,6 +128,18 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.fireBrigadeGoogleCurrentLocation,
       page: _i12.FireBrigadeGoogleCurrentLocation,
+    ),
+    _i1.RouteDef(
+      Routes.fireBrigadeAdminView,
+      page: _i13.FireBrigadeAdminView,
+    ),
+    _i1.RouteDef(
+      Routes.policeAdminView,
+      page: _i14.PoliceAdminView,
+    ),
+    _i1.RouteDef(
+      Routes.ambulanceAdminView,
+      page: _i15.AmbulanceAdminView,
     ),
   ];
 
@@ -182,6 +210,33 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
+    _i13.FireBrigadeAdminView: (data) {
+      final args = data.getArgs<FireBrigadeAdminViewArguments>(
+        orElse: () => const FireBrigadeAdminViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => _i13.FireBrigadeAdminView(key: args.key),
+        settings: data,
+      );
+    },
+    _i14.PoliceAdminView: (data) {
+      final args = data.getArgs<PoliceAdminViewArguments>(
+        orElse: () => const PoliceAdminViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => _i14.PoliceAdminView(key: args.key),
+        settings: data,
+      );
+    },
+    _i15.AmbulanceAdminView: (data) {
+      final args = data.getArgs<AmbulanceAdminViewArguments>(
+        orElse: () => const AmbulanceAdminViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => _i15.AmbulanceAdminView(key: args.key),
+        settings: data,
+      );
+    },
   };
 
   @override
@@ -190,7 +245,40 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i13.NavigationService {
+class FireBrigadeAdminViewArguments {
+  const FireBrigadeAdminViewArguments({this.key});
+
+  final _i16.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+}
+
+class PoliceAdminViewArguments {
+  const PoliceAdminViewArguments({this.key});
+
+  final _i16.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+}
+
+class AmbulanceAdminViewArguments {
+  const AmbulanceAdminViewArguments({this.key});
+
+  final _i16.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+}
+
+extension NavigatorStateExtension on _i17.NavigationService {
   Future<dynamic> navigateToSplashScreen([
     int? routerId,
     bool preventDuplicates = true,
@@ -345,6 +433,54 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToFireBrigadeAdminView({
+    _i16.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.fireBrigadeAdminView,
+        arguments: FireBrigadeAdminViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToPoliceAdminView({
+    _i16.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.policeAdminView,
+        arguments: PoliceAdminViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAmbulanceAdminView({
+    _i16.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.ambulanceAdminView,
+        arguments: AmbulanceAdminViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithSplashScreen([
     int? routerId,
     bool preventDuplicates = true,
@@ -493,6 +629,54 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.fireBrigadeGoogleCurrentLocation,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithFireBrigadeAdminView({
+    _i16.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.fireBrigadeAdminView,
+        arguments: FireBrigadeAdminViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithPoliceAdminView({
+    _i16.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.policeAdminView,
+        arguments: PoliceAdminViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAmbulanceAdminView({
+    _i16.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.ambulanceAdminView,
+        arguments: AmbulanceAdminViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

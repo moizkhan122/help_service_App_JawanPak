@@ -4,6 +4,7 @@ import 'package:flutter_application_1/App/App.locator.dart';
 import 'package:flutter_application_1/App/App.router.dart';
 import 'package:flutter_application_1/firebase_options.dart';
 import 'package:flutter_application_1/utills/Colors.dart';
+import 'package:flutter_application_1/views/FireBrigadeAdminView/FireBrigadeAdminView.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       //home: fireStore(),
+      //home: FireBrigadeAdminView(),
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
     );

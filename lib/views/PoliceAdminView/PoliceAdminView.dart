@@ -5,11 +5,11 @@ import 'package:flutter_application_1/utills/Colors.dart';
 import 'package:lottie/lottie.dart';
 
 // ignore: must_be_immutable
-class AmbulanceAdminView extends StatelessWidget {
-   AmbulanceAdminView({super.key});
+class PoliceAdminView extends StatelessWidget {
+   PoliceAdminView({super.key});
   
-  final fireBrigadefireStore = FirebaseFirestore.instance.collection('Ambulance').snapshots();
-  CollectionReference ref = FirebaseFirestore.instance.collection('Ambulance');
+  final fireBrigadefireStore = FirebaseFirestore.instance.collection('Police').snapshots();
+  CollectionReference ref = FirebaseFirestore.instance.collection('Police');
   @override
   Widget build(BuildContext context) {
     return Scaffold(

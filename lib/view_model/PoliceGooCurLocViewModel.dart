@@ -24,7 +24,8 @@ final Completer<GoogleMapController> controler = Completer(); //instance of a go
                   'Longitudee' : longitudee.toString(),
                   'Name' : name.toString(),
                   'Number' : num.toString(),
-                  'Case' : Case.toString()
+                  'Case' : Case.toString(),
+                  'Id' : id.toString(),
                 }).then((value){
                   print("Request sent");
                 }).onError((error, stackTrace){
@@ -134,7 +135,7 @@ final Completer<GoogleMapController> controler = Completer(); //instance of a go
   }
 
     void policeReqSend(BuildContext context){
-      if (!(Form.of(context)?.validate() ?? false)) {
+      if ((Form.of(context).validate())) {
         getPoliceReqWithCordinate(nameContr.text.toString(),numContr.text.toString(),caseContr.text.toString());
       }
     }

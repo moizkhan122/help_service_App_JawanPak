@@ -45,7 +45,7 @@ dependencies:
   firebase_core: ^2.7.1
   firebase_auth: ^4.2.10
   cloud_firestore: ^4.4.4
-  shared_preferences: ^2.0.18
+  flutter_geocoder: ^0.2.2-nullsafety
 
 dev_dependencies:
   flutter_test:

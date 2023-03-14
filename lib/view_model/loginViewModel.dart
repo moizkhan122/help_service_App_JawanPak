@@ -51,12 +51,9 @@ final toastService = locator<ToastService>();
   }
 
     void isSignIn(BuildContext context)async{
-      if (!(Form.of(context)?.validate() ?? false)) {
+      if (!(Form.of(context).validate())) {
         return;
       }
-      var res = await runBusyFuture(authService.loginORcreateuser(emailContr.text.toString(), passwordContr.text.toString()));
-      if(res){
-        navigateToHome();
-      }
+      var res = await runBusyFuture(authService.signIn(emailContr.text.toString(), passwordContr.text.toString()));
     }
 }

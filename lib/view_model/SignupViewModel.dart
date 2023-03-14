@@ -49,14 +49,31 @@ class SignUpViewModel extends BaseViewModel{
                     return null;
                  }
   }
+    ////////////////////
+  List<String> optionss =<String> [
+    'userAdmin'
+    'firebrigadeAdmin',
+    'policeAdmin',
+    'ambulanceAdmin',
+  ];
+  String currentItemSelected = "userAdmin";
+  var rool = "userAdmin";
+
+  onChnage(String? newValueSelected) {
+          currentItemSelected = newValueSelected!;
+          rebuildUi();
+          rool = newValueSelected;
+          rebuildUi();
+        }
 
     void isSignUp(BuildContext context)async{
-      if (!(Form.of(context)?.validate() ?? false)) {
+      if ((Form.of(context).validate())) {
         return;
       }
-      var res = await runBusyFuture(authService.loginORcreateuser(emailContr.text.toString(), passwordContr.text.toString()));
+      var res = await runBusyFuture(authService.signUp(emailContr.text.toString(), passwordContr.text.toString(),rool));
       if(res){
         navigateToLoginView();
       }
     }
+  
 }

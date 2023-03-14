@@ -60,6 +60,46 @@ class signUp extends StatelessWidget {
                     ),
                   ),
                   Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Rool : ",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.blackColor,
+                              ),
+                            ),
+                            DropdownButton<String>(
+                              dropdownColor: Colors.blue[900],
+                              isDense: true,
+                              isExpanded: false,
+                              iconEnabledColor: AppColors.blackColor,
+                              focusColor: AppColors.blackColor,
+                              items: viewModel.optionss.map((String dropDownStringItem) {
+                                return DropdownMenuItem<String>(
+                                  value: dropDownStringItem,
+                                  child: Text(
+                                    dropDownStringItem,
+                                    style: TextStyle(
+                                      color: AppColors.blackColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (newValueSelected) {
+                                  viewModel.currentItemSelected = newValueSelected!;
+                                  viewModel.rool = newValueSelected;
+                              },
+                              value: viewModel.currentItemSelected,
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 30,),
+
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       textWidget(text: "Don't Have an Account?",size: 18,color: AppColors.blackColor,),
@@ -67,7 +107,7 @@ class signUp extends StatelessWidget {
                         onTap: (){
                           viewModel.navigateToLoginView();
                         },
-                        child: textWidget(text: " SignUp", size: 18,color: AppColors.RedColor,)),
+                        child: textWidget(text: "Login In", size: 18,color: AppColors.RedColor,)),
                     ],
                   ),
                   const SizedBox(height: 25,),
