@@ -23,6 +23,12 @@ final toastService = locator<ToastService>();
   }
   
   bool isSellected = true;
+
+  isselected(){
+    isSellected = !isSellected;
+    rebuildUi();
+  }
+
     TextEditingController passwordContr = TextEditingController();
      TextEditingController emailContr = TextEditingController();
 

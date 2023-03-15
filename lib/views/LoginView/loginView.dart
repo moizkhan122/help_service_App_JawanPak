@@ -47,13 +47,15 @@ class LoginView extends StatelessWidget {
                         textWidget(text: "password",size: 25,color: AppColors.RedColor,),
                         const SizedBox(height: 15,),
                         TextFormField(
+                          obscureText: viewModel.isSellected,
                           controller: viewModel.passwordContr,
                          validator:  viewModel.passVerifi,
-                            //obscureText: isSellected,
-                          decoration: const InputDecoration(
-                            //  suffixIcon: GestureDetector(
-                            //    onTap: (){},
-                            //     child: Icon(isSellected ? Icons.visibility_off : Icons.visibility,color: AppColors.blackColor,)),
+                          decoration:  InputDecoration(
+                             suffixIcon: GestureDetector(
+                               onTap: (){
+                                viewModel.isselected();
+                               },
+                                child: Icon(viewModel.isSellected ? Icons.visibility_off : Icons.visibility,color: AppColors.blackColor,)),
                             border : OutlineInputBorder(),
                             hintText: "Enter password",),
                         ),

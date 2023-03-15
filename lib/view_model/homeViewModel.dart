@@ -25,7 +25,7 @@ class HomeViewModel extends BaseViewModel{
     _selectedIndex = index;
     rebuildUi();
     }
-      
+   
     
      final _navigationService = locator<NavigationService>();
      final auth = FirebaseAuth.instance;

@@ -26,6 +26,12 @@ class SignUpViewModel extends BaseViewModel{
   
   bool isSellected = true;
 
+  isselected(){
+    isSellected = !isSellected;
+    rebuildUi();
+  }
+      
+
   String? emailVerifi(String? value){
                   if(value == null || value.isEmpty){
                     return "Enter Email";

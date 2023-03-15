@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -12,7 +13,7 @@ class page2 extends StatefulWidget {
 }
 class _page2State extends State<page2> {
 
- Completer<GoogleMapController> _controler = Completer();
+ final Completer<GoogleMapController> _controler = Completer();
 
   List<Marker> _marker = [];
   List<Marker> list =const [
@@ -32,7 +33,7 @@ class _page2State extends State<page2> {
     getUserLocations();
   }
 
-  static final CameraPosition _kGooglePlex = const CameraPosition(
+  static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(24.828314,67.154739),
     zoom: 14,
     
@@ -43,7 +44,7 @@ class _page2State extends State<page2> {
       await Geolocator.requestPermission().then((value){
 
       }).onError((error, stackTrace){
-        print("error :"+error.toString());
+        print("error :$error");
       });
 
       return await Geolocator.getCurrentPosition();
@@ -66,11 +67,14 @@ class _page2State extends State<page2> {
         onPressed: (){
             getUserLocations().then((value)async{
               print("Located getted");
-              print(value.latitude.toString()+ " "+value.longitude.toString());
+              if (kDebugMode) {
+                print("${value.latitude} ${value.longitude}");
+              }
 
               _marker.add(
                 Marker(markerId: const MarkerId('2'),
               position: LatLng(value.latitude,value.longitude),
+              // ignore: prefer_const_constructors
               infoWindow: InfoWindow(
                 title: "My current location",
               )
