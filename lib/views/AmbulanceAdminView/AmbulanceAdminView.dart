@@ -1,33 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/resources/text.dart';
 import 'package:flutter_application_1/utills/Colors.dart';
+import 'package:flutter_application_1/view_model/AmbulanceAdminViewModel.dart';
+//import 'package:flutter_application_1/view_model/AmbulanceAdminViewModel.dart';
 import 'package:flutter_application_1/views/LoginView/loginView.dart';
 import 'package:lottie/lottie.dart';
+import 'package:stacked/stacked.dart';
 
 // ignore: must_be_immutable
-class AmbulanceAdminView extends StatefulWidget {
-   AmbulanceAdminView({super.key});
 
-  @override
-  State<AmbulanceAdminView> createState() => _AmbulanceAdminViewState();
-}
-
-class _AmbulanceAdminViewState extends State<AmbulanceAdminView> {
-  final fireBrigadefireStore = FirebaseFirestore.instance.collection('Ambulance').snapshots();
-
-  CollectionReference ref = FirebaseFirestore.instance.collection('Ambulance');
-
-  final auth = FirebaseAuth.instance;
-  
-          bool click = false;
+class AmbulanceAdminView extends StatelessWidget {
+  const AmbulanceAdminView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return ViewModelBuilder<AmbulanceAdminViewModel>.reactive(
+      viewModelBuilder: () => AmbulanceAdminViewModel(),
+      // ignore: deprecated_member_use
+      //onModelReady: (viewModel) => viewModel.getLocation(),
+      builder: (context, viewModel, child) => Scaffold(
+        body:Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
@@ -37,7 +31,7 @@ class _AmbulanceAdminViewState extends State<AmbulanceAdminView> {
            SizedBox(height: 50,),
 
             StreamBuilder<QuerySnapshot>(
-              stream: fireBrigadefireStore,
+              stream:viewModel.fireBrigadefireStore,
               builder: (context,AsyncSnapshot<QuerySnapshot> snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting){
                   return CircularProgressIndicator();
@@ -81,9 +75,7 @@ class _AmbulanceAdminViewState extends State<AmbulanceAdminView> {
                       children: [
                         ElevatedButton(
         onPressed: (){
-          setState(() {
-            click = true;
-          });
+          
         },
         style: ElevatedButton.styleFrom(
            fixedSize: const Size(150, 50),
@@ -94,14 +86,14 @@ class _AmbulanceAdminViewState extends State<AmbulanceAdminView> {
               width: 2.0,
               color: AppColors.RedColor,
             )),
-        child:click? Text("Accepted",style:const TextStyle(fontSize: 18),) : 
+        child:viewModel.click? Text("Accepted",style:const TextStyle(fontSize: 18),) : 
         Text("Accept",style:const TextStyle(fontSize: 18),)
         ),
                           ElevatedButton(
         onPressed: (){
-            ref.doc(snapshot.data!.docs[index]['Id'].toString()).delete().then((value){
+            viewModel.ref.doc(snapshot.data!.docs[index]['Id'].toString()).delete().then((value){
                               logout(){
-                        auth.signOut().then((value){
+                        viewModel.auth.signOut().then((value){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
                         }).onError((error, stackTrace){
                           if (kDebugMode) {
@@ -132,7 +124,7 @@ class _AmbulanceAdminViewState extends State<AmbulanceAdminView> {
                       child: IconButton(
                         onPressed: (){
                             logout(){
-                        auth.signOut().then((value){
+                        viewModel.auth.signOut().then((value){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
                         }).onError((error, stackTrace){
                           if (kDebugMode) {
@@ -150,6 +142,8 @@ class _AmbulanceAdminViewState extends State<AmbulanceAdminView> {
             
           ]),
       ),
-    );
+ 
+        ),
+      );
   }
 }

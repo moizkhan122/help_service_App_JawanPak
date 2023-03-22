@@ -99,7 +99,7 @@ class _PoliceAdminViewState extends State<PoliceAdminView> {
                           ElevatedButton(
         onPressed: (){
           ref.doc(snapshot.data!.docs[index]['Id'].toString()).delete().then((value){
-                              logout(){
+                              
                         auth.signOut().then((value){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
                         }).onError((error, stackTrace){
@@ -107,7 +107,7 @@ class _PoliceAdminViewState extends State<PoliceAdminView> {
                             print(error.toString());
                           }
                         });
-                              }
+                              
                             }).onError((error, stackTrace){
                               //FirebaseServices().ToastMessge(error);
                             });
@@ -124,24 +124,7 @@ class _PoliceAdminViewState extends State<PoliceAdminView> {
         child: Text("Deny",style:const TextStyle(fontSize: 18),)),
                       ],
                     ),
-                    SizedBox(height: 35,),
-
-                      Align(
-                      alignment: Alignment.bottomRight,
-                      child: IconButton(
-                        onPressed: (){
-                            logout(){
-                        auth.signOut().then((value){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
-                        }).onError((error, stackTrace){
-                          if (kDebugMode) {
-                            print(error.toString());
-                          }
-                        });
-                      }
-                        }, 
-                        icon: Icon(Icons.logout)),
-                    )
+                   
                   ],);
               },),
             );

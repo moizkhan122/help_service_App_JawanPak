@@ -14,6 +14,7 @@ import 'package:flutter_application_1/views/PoliceGoogleCurrentLocation/PoliceGo
 import 'package:flutter_application_1/views/PoliceServiceView/PoliceServiceView.dart';
 import 'package:flutter_application_1/views/SignUp/signUp.dart';
 import 'package:flutter_application_1/views/SplashView/SplashScreenView.dart';
+import 'package:flutter_application_1/views/firebrigadeAdminGooLocView/firebrigadeAdminGooLocView.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -33,6 +34,7 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: FireBrigadeAdminView),
     MaterialRoute(page: PoliceAdminView),
     MaterialRoute(page: AmbulanceAdminView),
+    MaterialRoute(page: FireBrigadeAdminGooCurrLocView),
   ],
   dependencies: [
     Singleton(

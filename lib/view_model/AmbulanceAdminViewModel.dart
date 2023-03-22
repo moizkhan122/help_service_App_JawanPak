@@ -1,52 +1,33 @@
 
 import 'dart:async';
 import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/App/App.locator.dart';
-import 'package:flutter_application_1/App/App.router.dart';
 import 'package:flutter_application_1/utills/Colors.dart';
-//import 'package:flutter_geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
+class AmbulanceAdminViewModel extends BaseViewModel{
 
-class FireBrigadeAdminViewModel extends BaseViewModel {
-
-  //  convertCordinateInToAdress(lat,lon)async{
-    
-  //   final cordinates = Coordinates(lat,lon);
-  //   var adress = await Geocoder.local.findAddressesFromCoordinates(cordinates);
-
-  //   var firstt  = adress.first;
-  //   return firstt.featureName.toString() + firstt.addressLine.toString(); 
-  // }
-///////////////////////////////////////////////////////////////////
-
-    navigateToFireBaseAdminGooLocView(){
-        
-    }
-
-    static double _latt = 0;
+   static double _latt = 0;
     static double _longg = 0;
 
     static double get latt => _latt;
     static double get longg => _longg;
 
-    setLatlong({required double latt,required double longg}){
+    setLatlong({required latt,required longg}){
       _latt = latt;
       _longg = longg;
     }
 
-   final fireBrigadefireStore = FirebaseFirestore.instance.collection('FireBrigade').snapshots();
+   final fireBrigadefireStore = FirebaseFirestore.instance.collection('Ambulance').snapshots();
 
-  CollectionReference ref = FirebaseFirestore.instance.collection('FireBrigade');
+  CollectionReference ref = FirebaseFirestore.instance.collection('Ambulance');
 
   final auth = FirebaseAuth.instance;
   
-          bool click = false;
+          bool click = true;
 
   isclick(){
     click = !click;
@@ -56,17 +37,12 @@ class FireBrigadeAdminViewModel extends BaseViewModel {
 
   //instance of a google map
     final Completer<GoogleMapController> controler = Completer(); 
-     final _navigationService = locator<NavigationService>();
 
   List<LatLng> points  = [
-    const LatLng(24.8387, 67.1209),//37.421998333333335//-122.084
+    const LatLng(33.6844, 72.0479),//37.421998333333335//-122.084
      LatLng(latt,longg),
   ];
-
-    navigateToLoginView() {
-    _navigationService.navigateToLoginView();
-  }
-
+  
   Set<Polygon> polygon = HashSet<Polygon>();
     setPolygon(){
       for (var i = 0; i < points.length; i++) {
@@ -90,27 +66,16 @@ class FireBrigadeAdminViewModel extends BaseViewModel {
     }
 
   final  CameraPosition lgoogleplex = const CameraPosition(
-    target: LatLng(24.8387, 67.1209),
+    target: LatLng(33.6844, 72.0479),
     zoom: 14
     );
 
     final List<Marker> marker =  <Marker>[
       const Marker(
         markerId: MarkerId('1'),
-        position: LatLng(24.8387, 67.1209),
+        position: LatLng(33.6844, 72.0479),
         infoWindow: InfoWindow(title: 'the title of marker'),
         )
     ];      
-
-   logout(){
-    auth.signOut().then((value){
-        navigateToLoginView();
-    }).onError((error, stackTrace){
-      if (kDebugMode) {
-        print(error.toString());
-      }
-    });
-  }
-   
 
 }

@@ -8,10 +8,9 @@ import 'package:stacked/stacked.dart';
 
 class AmbulGooCurLocViewModel extends BaseViewModel {
 
+
   double latituee = 0;
   double longitudee = 0;
-
-final Completer<GoogleMapController> controler = Completer(); //instance of a google map
 
     final ambulanceUser = FirebaseFirestore.instance.collection('Ambulance');    
   
@@ -34,7 +33,9 @@ final Completer<GoogleMapController> controler = Completer(); //instance of a go
                 });
                 rebuildUi();
       }
-
+      
+      //instance of a google map
+    final Completer<GoogleMapController> controler = Completer(); 
 
   final  CameraPosition lgoogleplex = const CameraPosition(
     target: LatLng(33.6844, 72.0479),
